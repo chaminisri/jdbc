@@ -67,7 +67,6 @@ public class Books {
 
 
 
-
         }catch(SQLException se){
             //Handle errors for JDBC
             se.printStackTrace();
