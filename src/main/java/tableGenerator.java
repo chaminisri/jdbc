@@ -24,27 +24,26 @@ public class tableGenerator {
                 + " last VARCHAR(255), "
                 + " PRIMARY KEY ( authorID ))";
 
-
-        String sql2="CREATE TABLE authorISBN "
+        String sql4="CREATE TABLE authorISBN "
                 + "(authorID INT, "
-                + "isbn CHAR(10))";
+                + "isbn CHAR(10), "
+                + "FOREIGN KEY ( authorID )REFERENCES authors( authorID ), "
+                + "FOREIGN KEY ( isbn )REFERENCES titles( isbn ))";
 
+        String sql2="CREATE TABLE publishers "
+                + "(publisherID INTEGER, "
+                + " publisherName char(100), "
+                + " PRIMARY KEY ( publisherID))";
 
         String sql3="CREATE TABLE titles "
                 + "(isbn CHAR(10), "
                 + " title VARCHAR(500), "
                 + " editionNumber INTEGER, "
                 + " copyright CHAR(4), "
-                + "publisherID INTEGER, "
-                + "price FLOAT, "
-                + " PRIMARY KEY ( isbn))";
-
-        String sql4="CREATE TABLE publishers "
-                + "(publisherID INTEGER, "
-                + " PUBLISHERnAME char(100), "
-                + " PRIMARY KEY ( publisherID))";
-
-
+                + " publisherID INTEGER, "
+                + " price FLOAT, "
+                + " PRIMARY KEY ( isbn ), "
+                + " FOREIGN KEY ( publisherID )REFERENCES publishers( publisherID ))";
         try{
             stMt.executeUpdate(sql1);
             stMt.executeUpdate(sql2);
