@@ -32,6 +32,7 @@ public class Books {
 
             System.out.println("Creating a table");
 
+            
             String table3 = "CREATE TABLE AUTHORS " +
                     "(authorID INTEGER not NULL, " +
                     " firstName VARCHAR(255), " +
@@ -41,28 +42,26 @@ public class Books {
             stmt.executeUpdate(table3);
             System.out.println("Created 'authors' table in given database...");
 
-            ///** Create titles table
-            String table1 = "CREATE TABLE TITLES " +
-                    "(isbn CHAR(10), " +
-                    " title VARCHAR(100), " +
-                    " editionNumber INTEGER, " +
-                    " copyright CHAR(4), " +
-                    " publisherID INTEGER, " +
-                    " price NUMBER(8, -2), " +
-                    " PRIMARY KEY ( isbn ), " +
-                    " FOREIGN KEY ( publisherID ) references publishers)";
-            stmt.executeUpdate(table1);
-            System.out.println("Created 'titles' table...");
-            //**/
-
-            ///**
             String table2 = "CREATE TABLE PUBLISHERS " +
                     "(publisherID INTEGER not NULL, " +
                     " publisherName CHAR(100), " +
                     " PRIMARY KEY ( publisherID )) ";
             stmt.executeUpdate(table2);
             System.out.println("Created 'publishers' table...");
-            //**/
+
+            String table4 = "CREATE TABLE TITLES " +
+                    "(isbn CHAR(10), " +
+                    " title VARCHAR(100), " +
+                    " editionNumber INTEGER, " +
+                    " copyright CHAR(4), " +
+                    " publisherID INTEGER, " +
+                    " price FLOAT, " +
+                    " PRIMARY KEY ( isbn ), " +
+                    " FOREIGN KEY ( publisherID )REFERENCES publishers( publisherID ))";
+            stmt.executeUpdate(table4);
+            System.out.println("Created 'titles' table...");
+
+
 
         }catch(SQLException se){
             //Handle errors for JDBC
