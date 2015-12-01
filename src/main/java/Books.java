@@ -9,7 +9,7 @@ public class Books {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "root";
+    static final String PASS = "brolly91";
 
     public static void main(String[] args) {
         Connection conn = null;
@@ -63,6 +63,10 @@ public class Books {
             stmt.executeUpdate(table2);
             System.out.println("Created 'publishers' table...");
             //**/
+
+
+
+
 
         }catch(SQLException se){
             //Handle errors for JDBC
