@@ -26,17 +26,46 @@ public class Books {
             System.out.println("Creating database...");
             stmt = conn.createStatement();
 
-            stmt.execute("DROP DATABASE books");
+//            String sql = "CREATE DATABASE Books";
+//            stmt.executeUpdate(sql);
+//            System.out.println("Database created successfully...");
 
-            String sql = "CREATE DATABASE Books";
-            stmt.executeUpdate(sql);
-            System.out.println("Database created successfully...");
+            System.out.println("Creating a table");
 
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/books" , "root" , "root");
-            Statement myStmt = myConn.createStatement();
+            
+            String table3 = "CREATE TABLE AUTHORS " +
+                    "(authorID INTEGER not NULL, " +
+                    " firstName VARCHAR(255), " +
+                    " lastName VARCHAR(255), " +
+                    " PRIMARY KEY ( authorID ))";
 
-            tableGenerator tc= new tableGenerator(myStmt,myConn);
-            tc.createTable();
+            stmt.executeUpdate(table3);
+            System.out.println("Created 'authors' table in given database...");
+
+            String table2 = "CREATE TABLE PUBLISHERS " +
+                    "(publisherID INTEGER not NULL, " +
+                    " publisherName CHAR(100), " +
+                    " PRIMARY KEY ( publisherID )) ";
+            stmt.executeUpdate(table2);
+            System.out.println("Created 'publishers' table...");
+
+            String table4 = "CREATE TABLE TITLES " +
+                    "(isbn CHAR(10), " +
+                    " title VARCHAR(100), " +
+                    " editionNumber INTEGER, " +
+                    " copyright CHAR(4), " +
+                    " publisherID INTEGER, " +
+                    " price FLOAT, " +
+                    " PRIMARY KEY ( isbn ), " +
+                    " FOREIGN KEY ( publisherID )REFERENCES publishers( publisherID ))";
+            stmt.executeUpdate(table4);
+            System.out.println("Created 'titles' table...");
+
+
+
+
+
+
 
         }catch(SQLException se){
             //Handle errors for JDBC
